@@ -1,0 +1,14 @@
+name: flutter_foreman
+description: Manage multiple Flutter SDK checkouts.
+#version: 0.1.0
+repository: https://github.com/christopherfujino/flutter_foreman.git
+
+dependencies:
+  args: 2.3.0
+  protobuf: 2.0.1
+
+dev_dependencies:
+  meta: any
+
+environment:
+  sdk: ">=2.14.0 < 3.0.0"
