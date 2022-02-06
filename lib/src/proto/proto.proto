@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package flutter_foreman;
+
+// Tool-managed manifest of installed Flutter SDKs.
+message Manifest {
+  repeated SDK sdks = 1;
+}
+
+message SDK {
+  // User-specified name, to disambiguate multiple SDKs at the same version.
+  // This will default to checkoutValue if the user does not provide one.
+  string name = 1;
+
+  // Path relative to the workspace.
+  string filePath = 2;
+
+  CheckoutType checkoutType = 3;
+  string checkoutValue = 4;
+}
+
+enum CheckoutType {
+  // An exact git commit revision. Channel will be `unknown`.
+  // Checkout value will be the revision string.
+  REVISION = 0;
+
+  // Either a release channel (e.g. `stable` or `master`) or a feature branch.
+  // Checkout value will be the branch string.
+  BRANCH = 1;
+
+  // A tagged version.
+  // TODO how to determine channel?
+  // Checkout value will be the tag string.
+  TAG = 2;
+}
+
+// User-managed config file
+message ConfigFile {
+  string name = 1;
+  string url = 2;
+
+  // Absolute file path to user-writable directory managed by the tool.
+  string workspacePath = 3;
+}
